@@ -2,6 +2,7 @@ from flask import Flask, Response
 import requests
 from bs4 import BeautifulSoup
 
+
 app = Flask(__name__)
 
 @app.route("/")
@@ -25,3 +26,10 @@ def nitter_feed():
         html += f'<div class="tweet">{content}<br><a href="https://nitter.net{link}" target="_blank">続きを読む</a></div>\n'
 
     return html
+
+
+import os
+
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 5000))  # Renderが指定するポートを取得
+    app.run(host="0.0.0.0", port=port)
